@@ -58,12 +58,44 @@ func employees(c *gin.Context) {
 	})
 }
 
+func createJobs(c *gin.Context) {
+	var jobs []Job
+
+	if err := c.ShouldBindJSON(&jobs); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	rows := DB.CreateInBatches(jobs, 100)
+	if rows.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Internal server error.",
+		})
+		return
+	}
+
+	// Preload associated record to be displayed in the response
+	if err := DB.Preload("Employee").Find(&jobs).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Error fetching jobs.",
+		})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{
+		"jobs": jobs,
+	})
+}
+
 func main() {
 	dbConnect()
 
 	router := gin.Default()
 	router.GET("/", home)
 	router.GET("/employees", employees)
+	router.POST("/jobs", createJobs)
 
 	router.Run(":8080")
 }
