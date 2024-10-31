@@ -22,29 +22,13 @@ Example job data:
 
 ```json
 [
-  {
-    "employee_id": 1,
-    "department": "Engineering",
-    "job_title": "Senior Enginer"
-  },
-  {
-    "employee_id": 2,
-    "department": "Engineering",
-    "job_title": "Super Senior Enginer"
-  },
-  { "employee_id": 3, "department": "Sales", "job_title": "Head of Sales" },
+  { "employee_id": 1, "department": "Engineering", "job_title": "Senior Enginer" },
+  { "employee_id": 2, "department": "Engineering", "job_title": "Super Senior Enginer" },
+  { "employee_id": 3, "department": "Sales", "job_title": "Head of Sales"},
   { "employee_id": 4, "department": "Support", "job_title": "Tech Support" },
-  {
-    "employee_id": 5,
-    "department": "Engineering",
-    "job_title": "Junior Enginer"
-  },
+  { "employee_id": 5, "department": "Engineering", "job_title": "Junior Enginer" },
   { "employee_id": 6, "department": "Sales", "job_title": "Sales Rep" },
-  {
-    "employee_id": 7,
-    "department": "Marketing",
-    "job_title": "Senior Marketer"
-  }
+  { "employee_id": 7, "department": "Marketing", "job_title": "Senior Marketer" }
 ]
 ```
 
