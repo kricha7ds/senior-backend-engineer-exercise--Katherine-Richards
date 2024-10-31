@@ -77,5 +77,5 @@ func main() {
 		v1.POST("/jobs", createJobs)
 	}
 
-	router.Run(":8080")
+	router.Run()
 }
