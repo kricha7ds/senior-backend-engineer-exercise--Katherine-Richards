@@ -37,27 +37,6 @@ func dbConnect() {
 	DB = db
 }
 
-func home(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"success": "success",
-	})
-}
-
-func employees(c *gin.Context) {
-	var employees []Employee
-	rows := DB.Find(&employees)
-
-	if rows.Error != nil {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "Data not found.",
-		})
-	}
-
-	c.JSON(http.StatusOK, gin.H{
-		"employees": employees,
-	})
-}
-
 func createJobs(c *gin.Context) {
 	var jobs []Job
 
@@ -76,7 +55,6 @@ func createJobs(c *gin.Context) {
 		return
 	}
 
-	// Preload associated record to be displayed in the response
 	if err := DB.Preload("Employee").Find(&jobs).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "Error fetching jobs.",
@@ -93,9 +71,11 @@ func main() {
 	dbConnect()
 
 	router := gin.Default()
-	router.GET("/", home)
-	router.GET("/employees", employees)
-	router.POST("/jobs", createJobs)
+
+	v1 := router.Group("/api/v1")
+	{
+		v1.POST("/jobs", createJobs)
+	}
 
 	router.Run(":8080")
 }

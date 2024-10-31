@@ -22,13 +22,29 @@ Example job data:
 
 ```json
 [
-  { "employee_id": 1, "department": "Engineering", "job_title": "Senior Enginer" },
-  { "employee_id": 2, "department": "Engineering", "job_title": "Super Senior Enginer" },
-  { "employee_id": 3, "department": "Sales", "job_title": "Head of Sales"},
+  {
+    "employee_id": 1,
+    "department": "Engineering",
+    "job_title": "Senior Enginer"
+  },
+  {
+    "employee_id": 2,
+    "department": "Engineering",
+    "job_title": "Super Senior Enginer"
+  },
+  { "employee_id": 3, "department": "Sales", "job_title": "Head of Sales" },
   { "employee_id": 4, "department": "Support", "job_title": "Tech Support" },
-  { "employee_id": 5, "department": "Engineering", "job_title": "Junior Enginer" },
+  {
+    "employee_id": 5,
+    "department": "Engineering",
+    "job_title": "Junior Enginer"
+  },
   { "employee_id": 6, "department": "Sales", "job_title": "Sales Rep" },
-  { "employee_id": 7, "department": "Marketing", "job_title": "Senior Marketer" }
+  {
+    "employee_id": 7,
+    "department": "Marketing",
+    "job_title": "Senior Marketer"
+  }
 ]
 ```
 
@@ -65,3 +81,43 @@ Example job data:
 - We expect this to take less than two hours, please try and limit your effort to that window
 - We truly value your time and just want a basic benchmark and common piece of code to use in future interviews
 - If we bring you in for in-person interviews, your submission might be revisited and built on during the interview process
+
+--
+
+## Instructions
+
+At the project root, do the following in a terminal:
+
+1. Install project dependencies
+
+```
+go mod download
+```
+
+2. Export environment variable for your desired port
+
+```
+export PORT=<DESIRED_PORT>
+```
+
+3. Run the API
+
+```
+go run .
+```
+
+4. Make a request to the API on your desired port. If desired port is not provided, the API will respond to requests on port `8080` by default.
+
+```
+curl --location 'http://localhost:<DESIRED_PORT>/api/v1/jobs' \
+--header 'Content-Type: application/json' \
+--data '[
+  { "employee_id": 1, "department": "Engineering", "job_title": "Senior Enginer" },
+  { "employee_id": 2, "department": "Engineering", "job_title": "Super Senior Enginer" },
+  { "employee_id": 3, "department": "Sales", "job_title": "Head of Sales"},
+  { "employee_id": 4, "department": "Support", "job_title": "Tech Support" },
+  { "employee_id": 5, "department": "Engineering", "job_title": "Junior Enginer" },
+  { "employee_id": 6, "department": "Sales", "job_title": "Sales Rep" },
+  { "employee_id": 7, "department": "Marketing", "job_title": "Senior Marketer" }
+]'
+```
